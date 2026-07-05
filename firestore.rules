@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper: validate document Id
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Students collection
+    match /students/{studentId} {
+      allow read: if true;
+      allow create, update: if isValidId(studentId);
+      allow delete: if isValidId(studentId);
+    }
+
+    // Behavior logs collection
+    match /behavior_logs/{logId} {
+      allow read: if true;
+      allow create, update: if isValidId(logId);
+      allow delete: if isValidId(logId);
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "منصة تعزيز السلوك الإيجابي",
+  "description": "منصة رقمية متكاملة لرصد وتعزيز السلوك الإيجابي للطلاب، تتيح للموجه الطلابي تتبع تميز الطلاب وإصدار تقارير دورية.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "Student": {
+      "title": "Student",
+      "description": "Student record containing profile info, total points and a list of behaviors.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "nationalId": { "type": "string" },
+        "grade": { "type": "string" },
+        "phone": { "type": "string" },
+        "totalPoints": { "type": "number" },
+        "behaviors": { "type": "array" }
+      },
+      "required": ["id", "name", "nationalId", "grade", "phone", "totalPoints"]
+    },
+    "BehaviorLog": {
+      "title": "BehaviorLog",
+      "description": "Global log of behavior entries registered by teachers and managers.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "teacherName": { "type": "string" },
+        "studentName": { "type": "string" },
+        "studentId": { "type": "string" },
+        "category": { "type": "string" },
+        "points": { "type": "number" },
+        "date": { "type": "string" }
+      },
+      "required": ["id", "teacherName", "studentName", "studentId", "category", "points", "date"]
+    }
+  },
+  "firestore": {
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Stores student points and local behavior history"
+    },
+    "/behavior_logs/{logId}": {
+      "schema": "BehaviorLog",
+      "description": "Centralised logs of behavior registrations visible dynamically to the admin"
+    }
+  }
+}
